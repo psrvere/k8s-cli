@@ -8,22 +8,22 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DeploymentCmd = &cobra.Command{
+var CreateDeploymentCmd = &cobra.Command{
 	Use:   "deployment [name]",
 	Short: "Create a deployment",
 	Args:  cobra.ExactArgs(1),
-	RunE:  Execute,
+	RunE:  create,
 }
 
 func init() {
-	DeploymentCmd.Flags().String("image", "", "container image")
-	DeploymentCmd.Flags().String("replicas", "", "number of replicas")
-	DeploymentCmd.Flags().String("port", "", "port")
+	CreateDeploymentCmd.Flags().String("image", "", "container image")
+	CreateDeploymentCmd.Flags().String("replicas", "", "number of replicas")
+	CreateDeploymentCmd.Flags().String("port", "", "port")
 
-	DeploymentCmd.MarkFlagRequired("image")
+	CreateDeploymentCmd.MarkFlagRequired("image")
 }
 
-func Execute(cmd *cobra.Command, args []string) error {
+func create(cmd *cobra.Command, args []string) error {
 	// Get positional arguments
 	name := args[0]
 

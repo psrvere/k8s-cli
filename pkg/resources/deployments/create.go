@@ -17,8 +17,6 @@ type CreateDeploymentOptions struct {
 	Image         string
 	protocol      corev1.Protocol
 	ContainerPort int32
-
-	Client *client.KubeClient
 }
 
 func NewCreateDeploymentOptions(name, image string, replicas, port int32) CreateDeploymentOptions {
@@ -37,7 +35,6 @@ func (o CreateDeploymentOptions) CreateDeployment() {
 	if err != nil {
 		log.Fatalf("error creating deployment: %v\n", err)
 	}
-
 	fmt.Printf("Deployment of %v is Successful!\n", deploy.ObjectMeta.Name)
 }
 

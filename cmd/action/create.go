@@ -1,4 +1,4 @@
-package create
+package action
 
 import (
 	"fmt"
@@ -9,10 +9,10 @@ import (
 
 var CreateCmd = &cobra.Command{
 	Use:   "create [resource]",
-	Short: "create a resource",
+	Short: "Create a resource",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if len(args) == 0 {
-			return fmt.Errorf("must specicy a resource argument")
+			return fmt.Errorf("must specicy a resource type")
 		}
 		if args[0] != "deployment" {
 			return fmt.Errorf("unknown resource type")
@@ -22,5 +22,5 @@ var CreateCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCmd.AddCommand(deployments.DeploymentCmd)
+	CreateCmd.AddCommand(deployments.CreateDeploymentCmd)
 }
