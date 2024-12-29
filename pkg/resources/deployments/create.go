@@ -30,10 +30,10 @@ func (o CreateDeploymentOptions) CreateDeployment() {
 	deployClient := client.GetDeploymentClient()
 	deploy, err := deployClient.Create(context.TODO(), deployment, metav1.CreateOptions{})
 	if err != nil {
-		log.Fatalf("error creating deployment: %v", err)
+		log.Fatalf("error creating deployment: %v\n", err)
 	}
 
-	fmt.Printf("Deployment of %v is Successful!", deploy.ObjectMeta.Name)
+	fmt.Printf("Deployment of %v is Successful!\n", deploy.ObjectMeta.Name)
 }
 
 func (o CreateDeploymentOptions) createDeployment() *appsv1.Deployment {

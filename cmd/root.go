@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"k8scli/cmd/deployments"
+	"k8scli/cmd/create"
 	"log"
 
 	"github.com/spf13/cobra"
@@ -20,5 +20,5 @@ func Execute() {
 
 func init() {
 	// register commands
-	rootCmd.AddCommand(deployments.CreateCmd)
+	rootCmd.AddCommand(create.CreateCmd)
 }
