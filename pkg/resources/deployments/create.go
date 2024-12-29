@@ -33,8 +33,7 @@ func (o CreateDeploymentOptions) CreateDeployment() {
 		log.Fatalf("error creating deployment: %v", err)
 	}
 
-	fmt.Println("Deployment Successful!")
-	fmt.Println(deploy)
+	fmt.Printf("Deployment of %v is Successful!", deploy.ObjectMeta.Name)
 }
 
 func (o CreateDeploymentOptions) createDeployment() *appsv1.Deployment {
