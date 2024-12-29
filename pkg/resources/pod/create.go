@@ -30,7 +30,7 @@ func (o CreatePodOptions) CreatePod() error {
 	if err != nil {
 		return fmt.Errorf("error creating pod: %v", err)
 	}
-	fmt.Printf("%v Pod creation Successful!\n", o.Name)
+	fmt.Printf("%v pod creation successful!\n", o.Name)
 	return nil
 }
 

@@ -3,6 +3,7 @@ package action
 import (
 	"fmt"
 	"k8scli/cmd/deployments"
+	"k8scli/cmd/pod"
 
 	"github.com/spf13/cobra"
 )
@@ -23,4 +24,5 @@ var DeleteCmd = &cobra.Command{
 
 func init() {
 	DeleteCmd.AddCommand(deployments.DeleteDeploymentCmd)
+	DeleteCmd.AddCommand(pod.DeletePodCmd)
 }
