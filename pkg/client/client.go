@@ -33,10 +33,15 @@ func NewKubeClient() (*KubeClient, error) {
 	}, nil
 }
 
-func GetDeploymentClient() v1.DeploymentInterface {
+func GetKubeClient() *KubeClient {
 	c, err := NewKubeClient()
 	if err != nil {
 		log.Fatalf("error in getting KubeClient: %v", err)
 	}
+	return c
+}
+
+func GetDeploymentClient() v1.DeploymentInterface {
+	c := GetKubeClient()
 	return c.ClientSet.AppsV1().Deployments(apiv1.NamespaceDefault)
 }

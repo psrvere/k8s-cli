@@ -22,4 +22,5 @@ func init() {
 	// register commands
 	rootCmd.AddCommand(action.CreateCmd)
 	rootCmd.AddCommand(action.DeleteCmd)
+	rootCmd.AddCommand(action.RunCmd)
 }
