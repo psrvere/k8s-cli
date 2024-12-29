@@ -1,4 +1,4 @@
-module cliapp
+module k8scli
 
 go 1.23.0
 
