@@ -37,12 +37,7 @@ func Execute(cmd *cobra.Command, args []string) error {
 	port := utils.GetInt32ValueFromFlag(cmd, "port", 80)
 
 	// create deployment here
-	opt := deployments.CreateDeploymentOptions{
-		Name:          name,
-		Image:         image,
-		Replicas:      replicas,
-		ContainerPort: port,
-	}
+	opt := deployments.NewCreateDeploymentOptions(name, image, replicas, port)
 
 	opt.CreateDeployment()
 	return nil

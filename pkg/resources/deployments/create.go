@@ -15,14 +15,19 @@ type CreateDeploymentOptions struct {
 	Name          string
 	Replicas      int32
 	Image         string
-	Protocol      corev1.Protocol
+	protocol      corev1.Protocol
 	ContainerPort int32
 
 	Client *client.KubeClient
 }
 
-func NewDeploymentOptions() {
-
+func NewCreateDeploymentOptions(name, image string, replicas, port int32) CreateDeploymentOptions {
+	return CreateDeploymentOptions{
+		Name:          name,
+		Image:         image,
+		Replicas:      replicas,
+		ContainerPort: port,
+	}
 }
 
 func (o CreateDeploymentOptions) CreateDeployment() {
@@ -68,7 +73,7 @@ func (o CreateDeploymentOptions) buildPodSpec() corev1.PodSpec {
 				Ports: []corev1.ContainerPort{
 					{
 						ContainerPort: o.ContainerPort,
-						Protocol:      o.Protocol,
+						Protocol:      o.protocol,
 					},
 				},
 			},
