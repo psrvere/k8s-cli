@@ -7,13 +7,17 @@ import (
 	"path/filepath"
 
 	apiv1 "k8s.io/api/core/v1"
+	apiextensionsclient "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
+	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"
 	v1 "k8s.io/client-go/kubernetes/typed/apps/v1"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
 type KubeClient struct {
-	ClientSet *kubernetes.Clientset
+	ClientSet          *kubernetes.Clientset
+	DynamicClient      *dynamic.DynamicClient
+	ApiextensionClient apiextensionsclient.Interface
 }
 
 func NewKubeClient() (*KubeClient, error) {
@@ -28,8 +32,21 @@ func NewKubeClient() (*KubeClient, error) {
 	if err != nil {
 		log.Fatalf("error in creating new client: %v", err)
 	}
+
+	dynamicClient, err := dynamic.NewForConfig(config)
+	if err != nil {
+		log.Fatalf("error in creating dynamic client: %v", err)
+	}
+
+	apieClient, err := apiextensionsclient.NewForConfig(config)
+	if err != nil {
+		log.Fatalf("error in creating api extention client: %v", err)
+	}
+
 	return &KubeClient{
-		ClientSet: clientset,
+		ClientSet:          clientset,
+		DynamicClient:      dynamicClient,
+		ApiextensionClient: apieClient,
 	}, nil
 }
 
@@ -44,4 +61,8 @@ func GetKubeClient() *KubeClient {
 func GetDeploymentClient() v1.DeploymentInterface {
 	c := GetKubeClient()
 	return c.ClientSet.AppsV1().Deployments(apiv1.NamespaceDefault)
+}
+
+func GetDynamicClient() {
+
 }

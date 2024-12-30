@@ -2,6 +2,8 @@ package action
 
 import (
 	"fmt"
+	"k8scli/cmd/crd"
+	"k8scli/cmd/customresource"
 	"k8scli/cmd/deployments"
 
 	"github.com/spf13/cobra"
@@ -23,4 +25,6 @@ var CreateCmd = &cobra.Command{
 
 func init() {
 	CreateCmd.AddCommand(deployments.CreateDeploymentCmd)
+	CreateCmd.AddCommand(customresource.CreateCustomResourceCmd)
+	CreateCmd.AddCommand(crd.CreateCustomResourceDefinitionCommand)
 }
