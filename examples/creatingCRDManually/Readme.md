@@ -1,0 +1,6 @@
+# CRD YAML
+- apiVersion has to be `apiextensions.k8s.io/v1` for CRDs. Only `v1` is reserved for cor API groups like pods and services. `apps/v1` is used for deployments and statefulsets
+- metadata.name should in format <plural>.<group> Here group is spec.group. k8s used this name to construct REST API endpoint for custom resouarce at `/apis/k8scli.io/v1/crontabs` (/apis/<group>/<plural>)
+- version shows the list of versions. `served` can enable or disable the version. Multiple versions can be enabled with this flag and older versions can be depricated.
+- k8s uses etcd to stroe cluster state which is used by controllers, restarting the cluster, etc. The spec data of a resource is also persisted in etcd
+- Only and only one version should be a `storage` version. Say we have a v1 version which is storage version and v2 version where api fields are changed for a CRD, and both version are served. This way way clients can used both api versions and use the v1 storage version. The coversion mapping between fields on v1 and v2 is handled automatically for simple cases. For complex or advanced cases, we can use Custom Conversion Webhook
