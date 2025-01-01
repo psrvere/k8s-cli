@@ -62,7 +62,3 @@ func GetDeploymentClient() v1.DeploymentInterface {
 	c := GetKubeClient()
 	return c.ClientSet.AppsV1().Deployments(apiv1.NamespaceDefault)
 }
-
-func GetDynamicClient() {
-
-}
