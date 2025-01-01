@@ -1,6 +1,8 @@
 package action
 
 import (
+	"fmt"
+	"k8scli/cmd/pod"
 	"testing"
 
 	"github.com/spf13/cobra"
@@ -65,8 +67,18 @@ func TestRun(t *testing.T) {
 				}
 			} else {
 				assert.NoError(t, err)
-
 			}
 		})
+
+		// cleanup
+		cleanup()
+	}
+}
+
+func cleanup() {
+	cmd := &cobra.Command{}
+	err := pod.Delete(cmd, []string{"test-pod"})
+	if err != nil {
+		fmt.Printf("Warn: failed to cleanup: %v\n", err)
 	}
 }
