@@ -15,9 +15,6 @@ var DeleteCmd = &cobra.Command{
 		if len(args) == 0 {
 			return fmt.Errorf("must specify a resource type")
 		}
-		if args[0] != "deployment" {
-			return fmt.Errorf("unknown resource type")
-		}
 		return nil
 	},
 }

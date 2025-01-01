@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "k8scli",
-	Short: "A cli to create and manage deployments on kubernetes",
+	Short: "A cli to interact with kubernetes",
 }
 
 func Execute() {

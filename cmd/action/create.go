@@ -16,9 +16,6 @@ var CreateCmd = &cobra.Command{
 		if len(args) == 0 {
 			return fmt.Errorf("must specicy a resource type")
 		}
-		if args[0] != "deployment" {
-			return fmt.Errorf("unknown resource type")
-		}
 		return nil
 	},
 }
