@@ -90,7 +90,7 @@ func NewCustomResourceDefinition() CustomResourceDefinition {
 
 func (crd CustomResourceDefinition) CreateCustomSourceDefinition() error {
 	client := client.GetKubeClient()
-	_, err := client.ApiextensionClient.ApiextensionsV1().CustomResourceDefinitions().Create(context.Background(), crd.Definition, metav1.CreateOptions{})
+	_, err := client.ApiExtensionClient.ApiextensionsV1().CustomResourceDefinitions().Create(context.Background(), crd.Definition, metav1.CreateOptions{})
 	if err != nil {
 		return fmt.Errorf("failed to create custom resource definition: %v", err)
 	}

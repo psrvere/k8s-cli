@@ -17,7 +17,7 @@ import (
 type KubeClient struct {
 	ClientSet          *kubernetes.Clientset
 	DynamicClient      *dynamic.DynamicClient
-	ApiextensionClient apiextensionsclient.Interface
+	ApiExtensionClient apiextensionsclient.Interface
 }
 
 func NewKubeClient() (*KubeClient, error) {
@@ -46,7 +46,7 @@ func NewKubeClient() (*KubeClient, error) {
 	return &KubeClient{
 		ClientSet:          clientset,
 		DynamicClient:      dynamicClient,
-		ApiextensionClient: apieClient,
+		ApiExtensionClient: apieClient,
 	}, nil
 }
 
