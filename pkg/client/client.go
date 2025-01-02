@@ -1,6 +1,7 @@
 package client
 
 import (
+	"errors"
 	"flag"
 	"log"
 	"os"
@@ -11,6 +12,7 @@ import (
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"
 	v1 "k8s.io/client-go/kubernetes/typed/apps/v1"
+	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
@@ -25,7 +27,16 @@ func NewKubeClient() (*KubeClient, error) {
 	flag.Parse()
 	config, err := clientcmd.BuildConfigFromFlags("", configpath)
 	if err != nil {
-		log.Fatalf("error in building cofig: %v", err)
+		// check if machine is in a cluster
+		// if yes, get config from there
+		var clstrErr error
+		config, clstrErr = rest.InClusterConfig()
+		if errors.Is(err, rest.ErrNotInCluster) {
+			log.Fatalf("error in getting config: %v", err)
+		}
+		if clstrErr != nil {
+			log.Fatalf("error fetching config from cluster: %v", clstrErr)
+		}
 	}
 
 	clientset, err := kubernetes.NewForConfig(config)
