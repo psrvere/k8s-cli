@@ -12,7 +12,7 @@ import (
 type ListPodOptions struct {
 }
 
-func NewListPodOption(name string) *ListPodOptions {
+func NewListPodOption() *ListPodOptions {
 	return &ListPodOptions{}
 }
 

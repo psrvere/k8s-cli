@@ -7,6 +7,7 @@ Deployment
 Pod
 - Create Pod: `k8scli run pod [name] [flags]`
 - Delete Pod: `k8scli delete pod [name]`
+- Get Pod: `k8scli get pod`
 
 CRD
 - Create a CustomPod CRD: `k8scli create crd`
